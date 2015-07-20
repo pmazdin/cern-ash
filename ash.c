@@ -430,7 +430,7 @@ static const char *var_end(const char *var)
 
 /* ============ Interrupts / exceptions */
 
-static void exitshell(int fl) NORETURN;
+static void exitshell(void) NORETURN;
 
 /*
  * These macros allow the user to suspend the handling of interrupt signals
@@ -3410,240 +3410,6 @@ static void setjobctl(int);
 
 
 
-
-// /*
-// Linked list part
-
-// */
-
-// struct test_struct
-// {
-//     int val;
-//     struct test_struct *next;
-// };
-
-// struct test_struct *head = NULL;
-// struct test_struct *curr = NULL;
-
-// struct test_struct* create_list(int val)
-// {
-//     struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
-//     if(NULL == ptr)
-//     {
-//         return NULL;
-//     }
-//     ptr->val = val;
-//     ptr->next = NULL;
-
-//     head = curr = ptr;
-//     return ptr;
-// }
-
-
-
-// struct test_struct* add_to_list(int val, bool add_to_end)
-// {
-//     if(NULL == head)
-//     {
-//         return (create_list(val));
-//     }
-//     struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
-//     if(NULL == ptr)
-//     {
-//         return NULL;
-//     }
-//     ptr->val = val;
-//     ptr->next = NULL;
-
-//     if(add_to_end)
-//     {
-//         curr->next = ptr;
-//         curr = ptr;
-//     }
-//     else
-//     {
-//         ptr->next = head;
-//         head = ptr;
-//     }
-//     return ptr;
-// }
-
-
-// /* 
-// heterogeneous linked list 
-// */
-
-// typedef struct heterogeneous_list
-// {
-//     int type; // 0 =int, 1= string
-//     void *item;
-//     struct heterogeneous_list *next;
-// };
-
-// struct heterogeneous_list* current = NULL;
-
-// struct heterogeneous_list* headCurrent = NULL;
-// //current->next = NULL;
-
-// struct heterogeneous_list* create_het_list(int flag) {
-
-// 	//struct heterogeneous_list* current = NULL;
-// 	//struct heterogeneous_list *current =malloc(sizeof(heterogeneous_list));
-// 	struct heterogeneous_list* current = (struct heterogeneous_list*)malloc(sizeof(struct heterogeneous_list));
-// 	//current->next = malloc(sizeof(heterogeneous_list));
-
-// 	switch(flag) {
-// 		case 0:
-// 		   	current->item = malloc(sizeof(int));
-// 		    current->type = 0;
-// 		    current->next = NULL;
-// 		    break;
-
-// 		case 1:
-// 			current->item = malloc(sizeof(int)); ///change this for string
-// 		    current->type = 1;
-// 		    current->next = NULL;
-// 		    break;
-// 	}
-// 	current = current->next;
-	
-// 	return current;
-// }
-
-// struct heterogeneous_list* store_het_list(int flag, int intItem, char *charItem) {
-
-// 	if(current)
-
-
-// 	// current = create_het_list(flag);
-// 	// switch(flag) {
-
-// 	// 	case 0:
-// 	// 		printf("jao int\n");
-// 	// 		current->item =intItem;
-// 	// 		printf("jao int item\n");
-// 	// 		current->next = NULL;
-// 	// 		printf("jao int next\n");
-// 	// 		break;
-// 	// 	case 1:
-// 	// 		printf("jao string\n");
-// 	// 		current->item = charItem;
-// 	// 		break;
-
-// 	// }
-// 	//struct heterogeneous_list* current;
-// 	//(struct heterogeneous_list*) current->next = (struct heterogeneous_list*)malloc(sizeof(struct heterogeneous_list));
-// 	//current->next = malloc(sizeof(struct heterogeneous_list));
-
-
-
-// 	//current->next = malloc(sizeof(struct heterogeneous_list));
-// 	if(NULL == headCurrent)
-//     {
-//     	printf(" xx nula jeeee xx\n");
-        
-//         struct heterogeneous_list* current = (struct heterogeneous_list*)malloc(sizeof(struct heterogeneous_list));
-//         headCurrent = current;
-
-//     }
-//     printf("ispred cur next\n");
-//     //current->next = malloc(sizeof(struct heterogeneous_list));
-//     printf("nakon cur next\n");
-
-// 	switch(flag) {
-// 		case 0:
-// 			printf("jao int \n");
-// 		   	current->next->item = intItem;
-// 		   	printf("jao int item\n");
-// 		    current->next->type = 0;
-// 		    //printf("jao int type\n");
-// 		    current->next->next = NULL;
-// 		    //printf("jao next\n");
-// 		    break;
-
-// 		case 1:
-// 			current->item = charItem; ///change this for string
-// 		    current->type = 1;
-// 		    current->next = NULL;
-// 		    break;
-// 	}
-// 	current = current->next;
-
-// 	return current;
-// }
-/*
-Linked list char part
-
-// */
-
-// struct test_struct_char
-// {
-//     char *val;
-//     struct test_struct_char *next;
-// };
-
-// struct test_struct_char *head_char = NULL;
-// struct test_struct_char *curr_char = NULL;
-
-// struct test_struct_char* create_list_char(char *val)
-// {
-//     struct test_struct_char *ptr_char = (struct test_struct_char*)malloc(sizeof(struct test_struct_char));
-//     if(NULL == ptr_char)
-//     {
-//         return NULL;
-//     }
-//     ptr_char->val = val;
-//     ptr_char->next = NULL;
-
-//     head_char = curr_char = ptr_char;
-//     return ptr_char;
-// }
-
-
-
-// struct test_struct_char* add_to_list_char(char *val, bool add_to_end)
-// {
-//     if(NULL == head_char)
-//     {
-//         return (create_list_char(val));
-//     }
-
-//     struct test_struct_char *ptr_char = (struct test_struct_char*)malloc(sizeof(struct test_struct_char));
-//     if(NULL == ptr_char)
-//     {
-//         return NULL;
-//     }
-//     ptr_char->val = val;
-//     ptr_char->next = NULL;
-
-//     if(add_to_end)
-//     {
-//         curr_char->next = ptr_char;
-//         curr_char = ptr_char;
-//     }
-//     else
-//     {
-//         ptr_char->next = head_char;
-//         head_char = ptr_char;
-//     }
-//     return ptr_char;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct heterogeneous_list
 {
     int type; // 0 =int, 1= string
@@ -3817,244 +3583,7 @@ void create_marks_csv(FILE *fp){
 
 			}
 		}
-// 				int start = ptr->val;
-// 			    ptr = ptr->next;
 
-// 			    int pidStart = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    int pidEnd = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    int end = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    char *command;
-
-// 			    if (ptr_char->val != NULL) {
-			    	
-// 			    	 command = malloc(strlen(ptr_char->val) + 2 + 1);
-// 			    	 command[0] = 0; 
-// 			    	command = strcat(command, "\"");
-// 			    	command = strcat(command, ptr_char->val);
-// 			    	command = strcat(command, "\"");
-			    	 
-
-// 			    }
-// 			    else {
-			    	
-// 			    	command = "";
-			    
-// 			    }
-// 			    ptr_char = ptr_char->next;
-
-// 			  	fprintf(fp, "\n%d!%s!%d ", pidStart, command, start); //  
-// 			  	fprintf(fp, "\n%d!!!%d", pidEnd, end);
-			  	
-	
-// 			  }
-
-// 			  fprintf(fp, "fnished Dumping marks PID %d ptr %x\n", getpid(), ptr);
-// }
- 
-
-
-
-
-// void print_list_char(void)
-// {
-//     struct test_struct_char *ptr_char = head_char;
-//     while(ptr_char != NULL)
-//     {
-//         //CVMDEBUG("\n %s \n",ptr_char->val);
-//         ptr_char = ptr_char->next;
-//     }
-//     return;
-// }
-
-
-// struct test_struct* search_in_list(int val, struct test_struct **prev)
-// {
-//     struct test_struct *ptr = head;
-//     struct test_struct *tmp = NULL;
-//     bool found = false;
-
-//     while(ptr != NULL)
-//     {
-//         if(ptr->val == val)
-//         {
-//             found = true;
-//             break;
-//         }
-//         else
-//         {
-//             tmp = ptr;
-//             ptr = ptr->next;
-//         }
-//     }
-
-//     if(true == found)
-//     {
-//         if(prev)
-//             *prev = tmp;
-//         return ptr;
-//     }
-//     else
-//     {
-//         return NULL;
-//     }
-// }
-
-// int delete_from_list(int val)
-// {
-//     struct test_struct *prev = NULL;
-//     struct test_struct *del = NULL;
-
-//     del = search_in_list(val,&prev);
-//     if(del == NULL)
-//     {
-//         return -1;
-//     }
-//     else
-//     {
-//         if(prev != NULL)
-//             prev->next = del->next;
-
-//         if(del == curr)
-//         {
-//             curr = prev;
-//         }
-//         else if(del == head)
-//         {
-//             head = del->next;
-//         }
-//     }
-
-//     free(del);
-//     del = NULL;
-
-//     return 0;
-// }
-
-// void print_list(void)
-// {
-//     struct test_struct *ptr = head;
-//     while(ptr != NULL)
-//     {
-//         //CVMDEBUG("\n %d \n",ptr->val);
-//         ptr = ptr->next;
-//     }
-//     return;
-// }
-
-// int listLength(void)
-// {
-//   struct test_struct *ptr = head;
-//   int size = 0;
-
-//   while (ptr != NULL)
-//   {
-//     ++size;
-//     ptr = ptr->next;
-//   }
-
-//   return size;
-// }
-
-// void write_scores(FILE *fp){
-
-// 	struct test_struct *ptr = head;
-	
-// 	int i=0;
-// 	int j=0;
-// 	while (ptr != NULL)
-// 	  {
-// 	  	if (j>8) j=0;
-// 	  	++i;
-// 	  	++j;
-// 	    fprintf(fp, "%d. %d.  start: %d", j, i, ptr->val);
-// 	    int start = ptr->val;
-// 	    ptr = ptr->next;
-
-// 	    fprintf(fp, ", end: %d", ptr->val);
-// 	    int end = ptr->val;
-// 	    ptr = ptr->next;
-
-// 	    int duration = end-start;
-// 	    fprintf(fp, ", duration: %d\n", duration);
-// 	  }	  
-// 	}
-
-
-// void create_marks_csv(FILE *fp){
- 
-//  	struct test_struct *ptr = head;
-//  	struct test_struct_char *ptr_char = head_char;
-	
-// 	int k=0;
-// 	int l=0;
-
-// 	fprintf(fp,"pid!command!start!end");//
-	 
-// 	fprintf(fp, "Dumping marks PID %d ptr %x\n", getpid(), ptr);
-
-// 		while (ptr != NULL)
-// 			  {
-			  	
-// 				int start = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    int pidStart = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    int pidEnd = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    int end = ptr->val;
-// 			    ptr = ptr->next;
-
-// 			    char *command;
-
-// 			    if (ptr_char->val != NULL) {
-			    	
-// 			    	 command = malloc(strlen(ptr_char->val) + 2 + 1);
-// 			    	 command[0] = 0; 
-// 			    	command = strcat(command, "\"");
-// 			    	command = strcat(command, ptr_char->val);
-// 			    	command = strcat(command, "\"");
-			    	 
-
-// 			    }
-// 			    else {
-			    	
-// 			    	command = "";
-			    
-// 			    }
-// 			    ptr_char = ptr_char->next;
-
-// 			  	fprintf(fp, "\n%d!%s!%d ", pidStart, command, start); //  
-// 			  	fprintf(fp, "\n%d!!!%d", pidEnd, end);
-			  	
-	
-// 			  }
-
-// 			  fprintf(fp, "fnished Dumping marks PID %d ptr %x\n", getpid(), ptr);
-// }
- 
-// int listLengthChar(void)
-// {
-//   struct test_struct *ptr_char = head_char;
-//   int size = 0;
-
-//   while (ptr_char != NULL)
-//   {
-//     ++size;
-//     ptr_char = ptr_char->next;
-//   }
-
-//   return size;
-// }
- 
 
 /*
  * Ignore a signal.
@@ -4115,7 +3644,7 @@ setsignal(int signo)
 				new_act = S_CATCH;
 			break;
 		case SIGQUIT:
-#if DEBUG
+#if DEBUG			
 			if (debug) {
 				
 				break;
@@ -8075,22 +7604,9 @@ repeat:
 #else 
 
 	//if(strcmp("/bin/dumpstat", cmd) == 0) {
-		//print_list();
-		//print_list_char();
-		
-		//printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
-		//int lenH = hetListLength();
-		//printf("length of het list: %d\n", lenH);
-		//print_het_list();
-		//int lenC = listLengthChar();
-		//int lenT = listLength()/4;
-		
-		//printf("char length: %d, time length: %d \n", lenC, lenT);
-	
 		//FILE *fp = fopen("/scores.csv", "w+");		
 		//create_marks_csv(fp);
     	//fclose(fp);
-
 	//}
 	execve(cmd, argv, envp);
 
@@ -8621,17 +8137,7 @@ describe_command(char *command, int describe_command_verbose)
 		if (describe_command_verbose) {
 			out1str(": not found\n");
 		}
-		 //char *p = ckstrdup(path_advance(&path, command));
-		 //  if (p == NULL) {
-		 //  	return 0;
-		 //  }
 
-		 //add_to_list_char(p, true);
-		 //store_het_list(1,0, p);
-		//  	print_list_char();
-	
-		//stunalloc(p);
-		//free(p);
 		return 127;
 	}
  out:
@@ -8707,31 +8213,13 @@ waitforjob(struct job *jp)
 	    if (gettimeofday(&time11,NULL)){
 	        //  Handle error
 	    }
-	    double waitStartTime = (double)time11.tv_sec + (double)time11.tv_usec * .000001;
-
-
+	    //double waitStartTime = (double)time11.tv_sec + (double)time11.tv_usec * .000001;
 	    double usecWait = (double)time11.tv_usec;
 		int intWait = (int)usecWait;
-
 		char *command = ckstrdup(jp->ps0.ps_cmd);
-
-		
-		
-		//if(command != NULL) {
-		//add_to_list_char(command, true);
-		//printf("store command\n");
 		store_het_list(1,0, command);
-		//int ret = describe_command(command, 0);
-			//CVMDEBUG("return: %d\n", ret);
-			//print_list_char();
-		//} else {
-		// 	TRACE("not good\n");
-		// }
-		//free(command);
-		
-		//add_to_list(intWait,true);
-		//printf("store start\n");
 		store_het_list(0,intWait, "");
+		
 		dowait(DOWAIT_BLOCK, jp);
 	}
 	INT_ON;
@@ -8760,17 +8248,13 @@ waitforjob(struct job *jp)
 		if (gettimeofday(&time3,NULL)){
 		        //  Handle error
 		}
-		double pidRealEndTime = (double)time3.tv_sec + (double)time3.tv_usec * .000001;
-		
+		//double pidRealEndTime = (double)time3.tv_sec + (double)time3.tv_usec * .000001;		
 		double usecDone = (double)time3.tv_usec;
 		int intDone = (int)usecDone;
 		int pid = jp->ps0.ps_pid;
-		//add_to_list(pid,true);
-		//printf("store pid 2\n");
 		store_het_list(0,pid, "");
-		//add_to_list(intDone,true);
-		//printf("store end\n");
 		store_het_list(0,intDone, "");
+		
 	return st;
 }
 
@@ -10531,7 +10015,7 @@ preadfd(void)
 # if ENABLE_ASH_IDLE_TIMEOUT
 			else if (errno == EAGAIN && timeout > 0) {
 				//CVMDEBUG("\007timed out waiting for input: auto-logout\n");
-				exitshell(0);
+				exitshell();
 			}
 # endif
 		}
@@ -13806,15 +13290,13 @@ ulimitcmd(int argc UNUSED_PARAM, char **argv)
  * Called to exit the shell.
  */
 static void
-exitshell(int fl)
+exitshell(void)
 {
 	struct jmploc loc;
 	char *p;
 	int status;
 
-	
-	//if (fl == 1) 
-	//{
+
 		char filename[25];
 		snprintf(filename, 25, "/scores.csv.%d", getpid());
 		FILE *fp = fopen(filename, "w+");
@@ -13824,7 +13306,6 @@ exitshell(int fl)
 		}		
 		create_marks_csv(fp);
 		fclose(fp);
-	//}
 
 #if ENABLE_FEATURE_EDITING_SAVE_ON_EXIT
 	save_history(line_input_state);
@@ -13996,7 +13477,7 @@ read_profile(const char *name)
 	skip = cmdloop(0);
 	popfile();
 	if (skip)
-		exitshell(0);
+		exitshell();
 }
 
 /*
@@ -14040,11 +13521,6 @@ int ash_main(int argc UNUSED_PARAM, char **argv)
 	struct jmploc jmploc;
 	struct stackmark smark;
 
-	int i = 0, ret = 0;
-
-	
-	struct test_struct *ptr = NULL;
-
 	/* Initialize global data */
 	INIT_G_misc();
 	INIT_G_memstack();
@@ -14074,7 +13550,7 @@ int ash_main(int argc UNUSED_PARAM, char **argv)
 		s = state;
 		
 		if (e == EXEXIT || shlvl || s == 0 || iflag == 0) {
-			exitshell(0);
+			exitshell();
 		}
 
 		if (e == EXINT) {
@@ -14184,7 +13660,7 @@ int ash_main(int argc UNUSED_PARAM, char **argv)
 	}
 #endif
 	TRACE(("End of main reached\n"));
-	exitshell(0);
+	exitshell();
 	/* NOTREACHED */
 	
 }
